@@ -1,0 +1,161 @@
+{
+  "info": {
+    "name": "RentaSuit API v1.0",
+    "_postman_id": "e4f35d6d-6c3c-4ee0-8b2b-c73f6e6120f9",
+    "description": "Collection generee depuis les routes actives api/v1.0.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost" },
+    { "key": "api_prefix", "value": "/api/v1.0" },
+    { "key": "api_token", "value": "" },
+    { "key": "email", "value": "test@example.com" },
+    { "key": "password", "value": "Password123!" },
+    { "key": "device_token", "value": "postman-device-token" },
+    { "key": "device_type", "value": "Android" },
+    { "key": "itemId", "value": "1" },
+    { "key": "product_id", "value": "1" },
+    { "key": "rented_id", "value": "1" },
+    { "key": "transaction_id", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "Public",
+      "item": [
+        {
+          "name": "signin",
+          "event": [{
+            "listen": "test",
+            "script": {
+              "type": "text/javascript",
+              "exec": [
+                "let res = {};",
+                "try { res = pm.response.json(); } catch(e) {}",
+                "const token = res?.data?.api_token;",
+                "if (token) pm.collectionVariables.set('api_token', token);"
+              ]
+            }
+          }],
+          "request": {
+            "method": "POST",
+            "header": [{"key":"Content-Type","value":"application/json"}],
+            "body": {"mode":"raw","raw":"{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\",\n  \"device_token\": \"{{device_token}}\",\n  \"device_type\": \"{{device_type}}\"\n}"},
+            "url": "{{base_url}}{{api_prefix}}/signin"
+          }
+        },
+        {
+          "name": "signup",
+          "event": [{
+            "listen": "test",
+            "script": {
+              "type": "text/javascript",
+              "exec": [
+                "let res = {};",
+                "try { res = pm.response.json(); } catch(e) {}",
+                "const token = res?.data?.api_token;",
+                "if (token) pm.collectionVariables.set('api_token', token);"
+              ]
+            }
+          }],
+          "request": {
+            "method": "POST",
+            "header": [{"key":"Content-Type","value":"application/json"}],
+            "body": {"mode":"raw","raw":"{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\",\n  \"device_token\": \"{{device_token}}\",\n  \"device_type\": \"{{device_type}}\"\n}"},
+            "url": "{{base_url}}{{api_prefix}}/signup"
+          }
+        },
+        {"name":"signin/social","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"type\": \"facebook\",\n  \"email\": \"{{email}}\",\n  \"facebook_id\": \"fb_123\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"device_token\": \"{{device_token}}\",\n  \"device_type\": \"{{device_type}}\"\n}"},"url":"{{base_url}}{{api_prefix}}/signin/social"}},
+        {"name":"signin/facebook","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"email\": \"{{email}}\",\n  \"facebook_id\": \"fb_123\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"device_token\": \"{{device_token}}\",\n  \"device_type\": \"{{device_type}}\"\n}"},"url":"{{base_url}}{{api_prefix}}/signin/facebook"}},
+        {"name":"signin/twitter","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"email\": \"{{email}}\",\n  \"twitter_id\": \"tw_123\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"device_token\": \"{{device_token}}\",\n  \"device_type\": \"{{device_type}}\"\n}"},"url":"{{base_url}}{{api_prefix}}/signin/twitter"}},
+        {"name":"forgot-password","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"email\": \"{{email}}\"\n}"},"url":"{{base_url}}{{api_prefix}}/forgot-password"}},
+        {"name":"category-list","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/category-list"}},
+        {"name":"product-list","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/product-list"}},
+        {"name":"product-search","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/product-search?keyword=suit"}},
+        {"name":"new-added-product","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/new-added-product"}},
+        {"name":"product-list-filter","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/product-list-filter"}},
+        {"name":"product-detail","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/product-detail?product_id={{product_id}}"}},
+        {"name":"shipping-calculator","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/shipping-calculator"}},
+        {"name":"contact-us","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"name\": \"John Doe\",\n  \"email_address\": \"{{email}}\",\n  \"subject\": \"Question\",\n  \"message\": \"Message test depuis Postman\"\n}"},"url":"{{base_url}}{{api_prefix}}/contact-us"}},
+        {"name":"common-dropdowns","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/common-dropdowns"}},
+        {"name":"reviews","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/reviews"}},
+        {"name":"cleaner-list","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/cleaner-list"}},
+        {"name":"faqs-list","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/faqs-list"}}
+      ]
+    },
+    {
+      "name": "Authenticated",
+      "auth": { "type": "bearer", "bearer": [{"key":"token","value":"{{api_token}}","type":"string"}] },
+      "item": [
+        {"name":"profile","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/profile"}},
+        {"name":"profile-update","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\"\n}"},"url":"{{base_url}}{{api_prefix}}/profile-update"}},
+        {"name":"update-firebase-id","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"firebase_id\": \"firebase_test_id\"\n}"},"url":"{{base_url}}{{api_prefix}}/update-firebase-id"}},
+        {"name":"change-password","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"current_password\": \"{{password}}\",\n  \"password\": \"NewPassword123!\",\n  \"password_confirmation\": \"NewPassword123!\"\n}"},"url":"{{base_url}}{{api_prefix}}/change-password"}},
+        {"name":"verify-code","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"verification_code\": \"123456\"\n}"},"url":"{{base_url}}{{api_prefix}}/verify-code"}},
+        {"name":"resend-verification-code","request":{"method":"POST","url":"{{base_url}}{{api_prefix}}/resend-verification-code"}},
+        {"name":"logout","request":{"method":"POST","url":"{{base_url}}{{api_prefix}}/logout"}},
+
+        {"name":"product-add-wishlist","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"product_id\": {{product_id}}\n}"},"url":"{{base_url}}{{api_prefix}}/product-add-wishlist"}},
+        {"name":"product-remove-wishlist","request":{"method":"DELETE","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"product_id\": {{product_id}}\n}"},"url":"{{base_url}}{{api_prefix}}/product-remove-wishlist"}},
+
+        {"name":"notification-list","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/notification-list"}},
+
+        {"name":"cart/list","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/cart/list"}},
+        {"name":"cart/add","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"productID\": {{product_id}},\n  \"start_date\": \"2026-03-20\",\n  \"end_date\": \"2026-03-22\",\n  \"delivery_option\": \"Regular mail\"\n}"},"url":"{{base_url}}{{api_prefix}}/cart/add"}},
+        {"name":"cart/remove","request":{"method":"DELETE","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"rented_id\": {{rented_id}}\n}"},"url":"{{base_url}}{{api_prefix}}/cart/remove"}},
+        {"name":"cart/flush","request":{"method":"DELETE","url":"{{base_url}}{{api_prefix}}/cart/flush"}},
+
+        {"name":"checkout/generate-payment-url","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"rented_id\": {{rented_id}}\n}"},"url":"{{base_url}}{{api_prefix}}/checkout/generate-payment-url"}},
+        {"name":"checkout/payment-status","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"payment_key\": \"PAY-KEY\"\n}"},"url":"{{base_url}}{{api_prefix}}/checkout/payment-status"}},
+
+        {"name":"messages","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/messages"}},
+        {"name":"room-messages","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/room-messages?room_id=1"}},
+
+        {"name":"submit-product-review","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"product_id\": {{product_id}},\n  \"rating\": 5,\n  \"title\": \"Great\",\n  \"comment\": \"Excellent product\"\n}"},"url":"{{base_url}}{{api_prefix}}/submit-product-review"}},
+
+        {"name":"rented-list","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/rented-list?results_per_page=10&page=1"}},
+        {"name":"rented-detail","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/rented-detail?rented_id={{rented_id}}"}},
+        {"name":"change-rented-product-status","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"rented_id\": {{rented_id}},\n  \"status\": \"accept\"\n}"},"url":"{{base_url}}{{api_prefix}}/change-rented-product-status"}},
+        {"name":"proceed-to-payment","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"rented_id\": {{rented_id}}\n}"},"url":"{{base_url}}{{api_prefix}}/proceed-to-payment"}},
+        {"name":"transactions","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/transactions?results_per_page=10&page=1"}},
+        {"name":"transaction-detail","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/transaction-detail?transaction_id={{transaction_id}}"}},
+
+        {"name":"wish-list","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/wish-list?results_per_page=10&page=1"}},
+
+        {"name":"my-added-products","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/my-added-products?results_per_page=10&page=1"}},
+        {"name":"product (create)","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"name\": \"Product Test\",\n  \"designer\": \"Designer\",\n  \"price\": 100,\n  \"retail_price\": 300,\n  \"color\": \"Black\",\n  \"size\": \"Medium\",\n  \"season\": \"Winter\",\n  \"description\": \"Description\"\n}"},"url":"{{base_url}}{{api_prefix}}/product"}},
+        {"name":"product/update","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"product_id\": {{product_id}},\n  \"name\": \"Product Test Updated\"\n}"},"url":"{{base_url}}{{api_prefix}}/product/update"}},
+        {"name":"product/remove","request":{"method":"DELETE","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"product_id\": {{product_id}}\n}"},"url":"{{base_url}}{{api_prefix}}/product/remove"}},
+        {"name":"product/{itemId}","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/product/{{itemId}}"}},
+
+        {"name":"product/photo/upload","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"product_id\": {{product_id}},\n  \"photo\": \"<base64_or_path>\"\n}"},"url":"{{base_url}}{{api_prefix}}/product/photo/upload"}},
+        {"name":"product/photo/remove","request":{"method":"DELETE","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"product_id\": {{product_id}},\n  \"photo_id\": 1\n}"},"url":"{{base_url}}{{api_prefix}}/product/photo/remove"}},
+
+        {"name":"booking-list","request":{"method":"GET","url":"{{base_url}}{{api_prefix}}/booking-list?results_per_page=10&page=1"}}
+      ]
+    },
+    {
+      "name": "Utilities",
+      "item": [
+        {
+          "name": "oauth/token (password grant - optionnel)",
+          "request": {
+            "method": "POST",
+            "header": [{"key":"Content-Type","value":"application/x-www-form-urlencoded"}],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {"key":"grant_type","value":"password"},
+                {"key":"client_id","value":""},
+                {"key":"client_secret","value":""},
+                {"key":"username","value":"{{email}}"},
+                {"key":"password","value":"{{password}}"},
+                {"key":"scope","value":""}
+              ]
+            },
+            "url": "{{base_url}}/oauth/token"
+          }
+        }
+      ]
+    }
+  ]
+}
