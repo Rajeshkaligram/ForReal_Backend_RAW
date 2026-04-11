@@ -13,6 +13,11 @@
 
 #include(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'api.php');
 
+// Health check route for Railway deployment
+Route::get('/health', function () {
+    return response()->json(['status' => 'ok']);
+});
+
 Route::get('payment', function () {
     $curl = curl_init();
 
