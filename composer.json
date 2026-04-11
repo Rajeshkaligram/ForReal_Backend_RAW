@@ -51,6 +51,9 @@
         "allow-plugins": {
             "kylekatarnls/update-helper": true,
             "php-http/discovery": true
+        },
+        "platform": {
+            "php": "8.2"
         }
     }
 }
