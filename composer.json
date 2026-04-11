@@ -9,8 +9,8 @@
         "braintree/braintree_php": "^3.40",
         "firebase/php-jwt": "^7.0",
         "intervention/image": "^2.7",
-        "laravel/framework": "^10.50",
-        "laravel/passport": "^12.4",
+        "laravel/framework": "^11.0",
+        "laravel/passport": "^13.0",
         "laravel/socialite": "^5.8",
         "laravel/tinker": "^2.8",
         "srmklive/paypal": "~1.0"
@@ -49,7 +49,8 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
-            "kylekatarnls/update-helper": true
+            "kylekatarnls/update-helper": true,
+            "php-http/discovery": true
         }
     }
 }
