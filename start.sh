@@ -2,7 +2,13 @@
 
 # Wait for MySQL to be ready
 echo "Waiting for MySQL..."
-sleep 5
+sleep 10
+
+# Import SQL dump if it exists
+if [ -f "db_rentasuit_php.sql" ]; then
+    echo "Importing SQL dump..."
+    mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < db_rentasuit_php.sql
+fi
 
 # Run migrations
 php artisan migrate --force
