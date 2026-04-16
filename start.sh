@@ -4,12 +4,6 @@
 echo "Waiting for MySQL..."
 sleep 10
 
-# Import SQL dump if it exists using Laravel
-if [ -f "db_rentasuit_php.sql" ]; then
-    echo "Importing SQL dump via Laravel..."
-    php artisan db:seed --class=SqlImportSeeder
-fi
-
 # Run migrations
 php artisan migrate --force
 
