@@ -23,6 +23,8 @@ return new class extends Migration
             ['id' => 2, 'name' => 'First', 'created_at' => now(), 'updated_at' => now()],
             ['id' => 3, 'name' => 'Second', 'created_at' => now(), 'updated_at' => now()],
             ['id' => 4, 'name' => 'Third', 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 5, 'name' => 'Fourth', 'created_at' => now(), 'updated_at' => now()],
+            ['id' => 6, 'name' => 'Fifth', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 
