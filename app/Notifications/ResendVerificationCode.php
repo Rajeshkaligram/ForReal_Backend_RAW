@@ -44,10 +44,12 @@ class ResendVerificationCode extends Notification {
      */
     public function toMail($notifiable)
     {
+        $mailFrom = env('MAIL_FROM', 'noreply@rentasuit.com');
+        
         return (new MailMessage)
                     ->error()
-                    ->subject(env('APP_NAME').' - Verification code')
-                    ->from(env('MAIL_FROM'))
+                    ->subject(env('APP_NAME', 'RentaSuit').' - Verification code')
+                    ->from($mailFrom)
                     ->greeting('Good day!')
                     ->line('Your verification code is '.$this->verification_code.'. please verify to access your account.');
     }

@@ -44,12 +44,14 @@ class RegistrationVerificationCodeSend extends Notification{
      */
     public function toMail($notifiable)
     {
+        $mailFrom = env('MAIL_FROM', 'noreply@rentasuit.com');
+        
         return (new MailMessage)
                     ->error()
-                    ->subject(env('APP_NAME').' - Registration')
-                    ->from(env('MAIL_FROM'))
+                    ->subject(env('APP_NAME', 'RentaSuit').' - Registration')
+                    ->from($mailFrom)
                     ->greeting('Good day!')
-                    ->line('Thank you for registering with '.env('APP_NAME').'!')
+                    ->line('Thank you for registering with '.env('APP_NAME', 'RentaSuit').'!')
                     ->line('Your verification code is '.$this->verification_code.', please verify to access your account.');
     }
 
