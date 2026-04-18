@@ -234,6 +234,19 @@ class UserController extends ApiBaseController {
     }
 
     public function login(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status'    => $this->failedStatus,
+                'message'   => 'Validation Errors',
+                'data'      => $validator->errors(),
+            ], $this->failedStatus);
+        }
+
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
             $user = Auth::user();
             if($user->status == 1) {
