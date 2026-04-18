@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -11,6 +12,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (Schema::hasTable('configuration')) {
+            return;
+        }
         Schema::create('configuration', function (Blueprint $table) {
             $table->id();
             $table->text('logo');
@@ -32,6 +36,7 @@ return new class extends Migration
         });
 
         // Insert default configuration
+        if (!DB::table('configuration')->where('id', 1)->exists()) {
         DB::table('configuration')->insert([
             'id' => 1,
             'logo' => 'uploads/others/1496992927__logo.png',
@@ -52,6 +57,7 @@ return new class extends Migration
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        }
     }
 
     /**

@@ -13,6 +13,9 @@ class CreateExchangeRatesTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('exchange_rates')) {
+            return;
+        }
         Schema::create('exchange_rates', function (Blueprint $table) {
             $table->id();
             $table->string('currency_code', 3);
